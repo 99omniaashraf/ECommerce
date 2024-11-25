@@ -5,12 +5,12 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Signup from "./layout/Signup";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* الصفحات التي تحتوي على Navbar */}
         <Route
           path="/"
           element={
@@ -21,7 +21,15 @@ function App() {
             </>
           }
         />
-        {/* الصفحات بدون Navbar */}
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Signup />
+              <Footer />
+            </>
+          }
+        />
         <Route
           path="/about"
           element={

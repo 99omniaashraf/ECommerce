@@ -8,7 +8,6 @@ function About() {
     <div className="min-h-screen p-8 bg-gray-100 text-gray-800">
       <h1 className="text-4xl font-bold text-center mb-8">About Pottery</h1>
       
-      {/* Images Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <img
@@ -33,7 +32,7 @@ function About() {
         </div>
       </div>
 
-      {/* Text Section */}
+
       <div className="bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">History of Pottery</h2>
         <p className="text-lg leading-relaxed">

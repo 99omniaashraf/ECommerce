@@ -1,10 +1,9 @@
 import React from "react";
-import picture4 from "../assets/images/picture4.jpg"; // تأكدي من وجود الصورة
+import picture4 from "../assets/images/picture4.jpg";
 
 function Contact() {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center bg-gray-100">
-      {/* Image Section */}
       <div className="hidden lg:block">
         <img
           src={picture4}
@@ -13,7 +12,7 @@ function Contact() {
         />
       </div>
 
-      {/* Form Section */}
+
       <div className="p-8 flex flex-col justify-center">
         <h1 className="text-4xl font-bold mb-6 text-gray-800 text-center">
           Contact Us
@@ -21,9 +20,9 @@ function Contact() {
 
         <form
           className="bg-white shadow-lg rounded-lg p-6 w-full mx-auto"
-          style={{ maxWidth: "600px" }} // تحديد العرض بشكل يدوي
+          style={{ maxWidth: "600px" }} 
         >
-          {/* Name Field */}
+
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Name
@@ -37,7 +36,7 @@ function Contact() {
             />
           </div>
 
-          {/* Email Field */}
+
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
@@ -51,7 +50,7 @@ function Contact() {
             />
           </div>
 
-          {/* Message Field */}
+
           <div className="mb-4">
             <label htmlFor="message" className="block text-sm font-medium text-gray-700">
               Message
@@ -65,7 +64,7 @@ function Contact() {
             ></textarea>
           </div>
 
-          {/* Submit Button */}
+
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition"
