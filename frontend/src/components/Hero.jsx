@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import picture3 from "../assets/images/picture3.jpg";
 import picture4 from "../assets/images/picture4.jpg";
 
@@ -25,16 +26,15 @@ function Hero() {
   }, []);
 
   const handleGetStarted = () => {
-    setShowNavbar(true); // عرض النافذة الرأسية
+    setShowNavbar(true);
   };
 
   const handleCloseNavbar = () => {
-    setShowNavbar(false); // إغلاق النافذة الرأسية
+    setShowNavbar(false);
   };
 
   return (
     <div>
-      {/* Vertical Navbar */}
       {showNavbar && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60 z-50">
           <div className="p-8 rounded-lg shadow-lg w-80 bg-opacity-70 bg-gray-800 text-white relative">
@@ -47,31 +47,30 @@ function Hero() {
             <h2 className="text-2xl font-bold mb-5 text-center">Navigation</h2>
             <ul className="space-y-4 text-center">
               <li>
-                <a href="#home" className="block hover:underline">
+                <Link to="/" className="block hover:underline">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="block hover:underline">
+                <Link to="/about" className="block hover:underline">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#product" className="block hover:underline">
+                <Link to="/product" className="block hover:underline">
                   Product
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="block hover:underline">
+                <Link to="/contact" className="block hover:underline">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
       )}
 
-      {/* Hero Section */}
       <div
         id="hero"
         className={`hero min-h-screen ${showNavbar ? "opacity-60" : "opacity-100"}`}
