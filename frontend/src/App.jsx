@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Signup from "./layout/Signup";
+import Login from "./layout/Login";
 
 function App() {
   return (
@@ -26,6 +27,15 @@ function App() {
           element={
             <>
               <Signup />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Login />
               <Footer />
             </>
           }
