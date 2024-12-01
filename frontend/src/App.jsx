@@ -5,6 +5,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Signup from "./layout/Signup";
 import Login from "./layout/Login";
+import Product from "./pages/Product";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -35,6 +37,22 @@ function App() {
           element={
             <>
               <About />
+            </>
+          }
+        />
+        <Route
+          path="/product"
+          element={
+            <>
+              <Product />
+            </>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <>
+              <ProductDetails />
             </>
           }
         />
