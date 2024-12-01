@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import picture5 from "../assets/images/picture5.jpg";
 import picture7 from "../assets/images/picture7.jpg";
 import picture1 from "../assets/images/picture1.jpg";
 
 function About() {
+  const [isClosed, setIsClosed] = useState(false);
+
+  const handleClose = () => {
+    setIsClosed(true);
+  };
+
+  if (isClosed) {
+    return null;
+  }
+
   return (
-    <div className="min-h-screen p-8 bg-gray-100 text-gray-800">
+    <div className="min-h-screen p-8 bg-gray-100 text-gray-800 relative">
+      {/* إضافة رمز الإغلاق */}
+      <button
+        onClick={handleClose}
+        className="absolute top-4 right-4 text-3xl text-gray-800 hover:text-red-600"
+      >
+        &times;
+      </button>
+
       <h1 className="text-4xl font-bold text-center mb-8">About Pottery</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -31,7 +49,6 @@ function About() {
           />
         </div>
       </div>
-
 
       <div className="bg-white shadow-lg rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-4">History of Pottery</h2>
