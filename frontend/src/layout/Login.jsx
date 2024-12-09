@@ -24,7 +24,6 @@ const countries = [
   { value: "+507", label: "Panama (+507)" },
 ];
 
-
 function Login() {
   const [selectedCountry, setSelectedCountry] = useState("+20"); 
   const [phoneNumber, setPhoneNumber] = useState("");
