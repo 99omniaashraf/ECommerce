@@ -1,64 +1,152 @@
-import React from "react";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
-import signup from "../assets/images/signup.png";
+import React, { useState } from "react";
+import picture1 from "../assets/images/picture1.jpg";
+import Select from "react-select";
+import { useNavigate } from "react-router-dom";
+
+
+const countries = [
+  { value: "+1", label: "United States (+1)" },
+  { value: "+44", label: "United Kingdom (+44)" },
+  { value: "+20", label: "Egypt (+20)" },
+  { value: "+91", label: "India (+91)" },
+  { value: "+33", label: "France (+33)" },
+  { value: "+49", label: "Germany (+49)" },
+  { value: "+81", label: "Japan (+81)" },
+  { value: "+86", label: "China (+86)" },
+  { value: "+7", label: "Russia (+7)" },
+  { value: "+27", label: "South Africa (+27)" },
+  { value: "+61", label: "Australia (+61)" },
+  { value: "+55", label: "Brazil (+55)" },
+  { value: "+1", label: "Canada (+1)" },
+  { value: "+52", label: "Mexico (+52)" },
+  { value: "+31", label: "Netherlands (+31)" },
+  { value: "+64", label: "New Zealand (+64)" },
+  { value: "+507", label: "Panama (+507)" },
+];
 
 function Login() {
+  const [selectedCountry, setSelectedCountry] = useState("+20"); 
+  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [isVisible, setIsVisible] = useState(true); 
+
+  const handleCountryChange = (selectedOption) => {
+    setSelectedCountry(selectedOption.value);
+  };
+
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+
+  const closeLogin = () => {
+    setIsOpen(false);
+  };
+
+  if (!isOpen) {
+    navigate("/");
+    return null;
+  }
+
   return (
-    <div className="flex h-screen">
+    <div className="relative">
+      <section className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="flex w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="w-1/2">
+            <img
+              src={picture1}
+              alt="Illustration"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-      {/* القسم الأيسر: نموذج تسجيل الدخول */}
-      <div className="w-1/2 flex flex-col justify-center items-center bg-white p-8">
+          <div className="w-1/2 p-8 flex flex-col justify-center">
 
-        {/* عنوان النموذج */}
-        <h2 className="text-2xl font-bold mb-6">Log In to Your Account</h2>
+            <button
+        onClick={closeLogin}
+        className="absolute top-4 right-4 text-xl text-gray-600 hover:text-gray-900"
+      >
+        &times;
+      </button>
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              Create Your Account
+            </h2>
 
-        {/* النموذج */}
-        <form className="w-full max-w-sm space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="input input-bordered w-full"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="input input-bordered w-full"
-          />
-          <button className="btn btn-primary w-full">Log In</button>
-        </form>
+            <form className="space-y-4">
+              
+              <div className="flex space-x-4">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  className="input input-bordered w-1/2"
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  className="input input-bordered w-1/2"
+                />
+              </div>
 
-        {/* تقسيم بين الخيارات */}
-        <div className="divider">or</div>
+              
+              <input
+                type="email"
+                placeholder="Email"
+                className="input input-bordered w-full"
+              />
 
-        {/* خيارات تسجيل الدخول باستخدام الشبكات الاجتماعية */}
-        <div className="flex flex-row space-x-4">
-          <button className="btn btn-outline flex items-center">
-            <FaFacebook className="mr-2 text-blue-600" size={20} />
-            Facebook
-          </button>
-          <button className="btn btn-outline flex items-center">
-            <FaGoogle className="mr-2 text-red-600" size={20} />
-            Google
-          </button>
+              
+              <Select
+                options={countries}
+                defaultValue={countries.find((c) => c.value === "+20")}
+                onChange={handleCountryChange}
+                placeholder="Select Your Country"
+              />
+
+              
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  value={selectedCountry}
+                  readOnly
+                  className="input input-bordered w-1/4 text-center"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="input input-bordered w-3/4"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
+
+              
+              <input
+                type="password"
+                placeholder="Password"
+                className="input input-bordered w-full"
+              />
+              
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                className="input input-bordered w-full"
+              />
+
+              
+              <div className="flex space-x-4">
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="gender" value="male" />
+                  <span>Male</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input type="radio" name="gender" value="female" />
+                  <span>Female</span>
+                </label>
+              </div>
+
+              
+              <button className="btn btn-primary w-full">Sign Up</button>
+            </form>
+          </div>
         </div>
-
-        {/* رسالة لإنشاء حساب جديد */}
-        <p className="mt-6 text-sm">
-          Don't have an account?{" "}
-          <a href="/signup" className="text-blue-500 underline">
-            Sign Up
-          </a>
-        </p>
-      </div>
-
-      {/* القسم الأيمن: صورة جانبية */}
-      <div className="w-1/2">
-        <img
-          src={signup}
-          alt="Login Illustration"
-          className="h-full w-full object-cover"
-        />
-      </div>
+      </section>
     </div>
   );
 }
