@@ -38,7 +38,7 @@ function Signup() {
 
           <div className="w-1/2 p-8 flex flex-col justify-center">
             <h2 className="text-2xl font-bold mb-4 text-center">
-              Login or sign up to start learning
+            Welcome everyone
             </h2>
 
             <div className="flex justify-center gap-4 mb-6">

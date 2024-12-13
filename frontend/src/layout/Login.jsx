@@ -142,7 +142,7 @@ function Login() {
               </div>
 
               
-              <button className="btn btn-primary w-full">Sign Up</button>
+              <button className="btn btn-primary w-full">Enter</button>
             </form>
           </div>
         </div>
