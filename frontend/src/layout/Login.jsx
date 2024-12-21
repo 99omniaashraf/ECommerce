@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
 import picture1 from "../assets/images/picture1.jpg";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-
 
 const countries = [
   { value: "+1", label: "United States (+1)" },
@@ -25,25 +25,41 @@ const countries = [
 ];
 
 function Login() {
-  const [selectedCountry, setSelectedCountry] = useState("+20"); 
+  const [selectedCountry, setSelectedCountry] = useState("+20");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [isVisible, setIsVisible] = useState(true); 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  const navigate = useNavigate();
 
   const handleCountryChange = (selectedOption) => {
     setSelectedCountry(selectedOption.value);
   };
 
-  const [isOpen, setIsOpen] = useState(true);
-  const navigate = useNavigate();
-
-  const closeLogin = () => {
-    setIsOpen(false);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  if (!isOpen) {
-    navigate("/");
-    return null;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("https://example.com/api/register", {
+        ...formData,
+        phoneNumber: `${selectedCountry}${phoneNumber}`,
+      });
+      console.log("Registration successful:", response.data);
+      navigate("/success");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
 
   return (
     <div className="relative">
@@ -58,40 +74,39 @@ function Login() {
           </div>
 
           <div className="w-1/2 p-8 flex flex-col justify-center">
-
-            <button
-        onClick={closeLogin}
-        className="absolute top-4 right-4 text-xl text-gray-600 hover:text-gray-900"
-      >
-        &times;
-      </button>
             <h2 className="text-2xl font-bold mb-4 text-center">
               Create Your Account
             </h2>
 
-            <form className="space-y-4">
-              
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="flex space-x-4">
                 <input
                   type="text"
+                  name="firstName"
                   placeholder="First Name"
                   className="input input-bordered w-1/2"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
                 />
                 <input
                   type="text"
+                  name="lastName"
                   placeholder="Last Name"
                   className="input input-bordered w-1/2"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
                 />
               </div>
 
-              
               <input
                 type="email"
+                name="email"
                 placeholder="Email"
                 className="input input-bordered w-full"
+                value={formData.email}
+                onChange={handleInputChange}
               />
 
-              
               <Select
                 options={countries}
                 defaultValue={countries.find((c) => c.value === "+20")}
@@ -99,7 +114,6 @@ function Login() {
                 placeholder="Select Your Country"
               />
 
-              
               <div className="flex items-center space-x-2">
                 <input
                   type="text"
@@ -116,33 +130,48 @@ function Login() {
                 />
               </div>
 
-              
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 className="input input-bordered w-full"
-              />
-              
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="input input-bordered w-full"
+                value={formData.password}
+                onChange={handleInputChange}
               />
 
-              
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                className="input input-bordered w-full"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+              />
+
               <div className="flex space-x-4">
                 <label className="flex items-center space-x-2">
-                  <input type="radio" name="gender" value="male" />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    onChange={handleInputChange}
+                  />
                   <span>Male</span>
                 </label>
                 <label className="flex items-center space-x-2">
-                  <input type="radio" name="gender" value="female" />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    onChange={handleInputChange}
+                  />
                   <span>Female</span>
                 </label>
               </div>
 
-              
-              <button className="btn btn-primary w-full">Enter</button>
+              <button type="submit" className="btn btn-primary w-full">
+                Enter
+              </button>
             </form>
           </div>
         </div>
